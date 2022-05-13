@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from "../components/chatcomponent.module.css"
 
 export const ChatComponent = () => {
-    const [value, addValue] = useState('Введите сообщение');
+    const [value, addValue] = useState('Введите сообщение!');
     const [messageList, addMessage] = useState([]); 
 
     function handleChange(event) {
