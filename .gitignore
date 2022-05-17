@@ -7,6 +7,7 @@
 /src/components/ChatComponent
 /src/components/ClassComponent
 /src/components/FunctionComponent
+/src/components/layout
 
 # testing
 /coverage

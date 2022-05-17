@@ -12,15 +12,23 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
+const drawerWidth = 200;
+    const InputStyles = styled(Input)`
+    color: #9a9fa1;
+    padding: 10px 15px;
+    font-size: ${(props) => {
+        return "15px";
+    }};
+    `;
 
 export const MessageList = () => {
     const [value, addValue] = useState('');
     const [messageList, addMessage] = useState([]); 
 
-    const ref = useRef()
+    const ref = useRef();
     useEffect(()=>{
-      ref.current?.focus(InputAdornment);
-    },[]);
+      ref.current?.focus();
+    },[InputAdornment]);
 
     const dates = format(new Date(), 'yyyy-MM-dd HH:MM:SS');
 
@@ -50,14 +58,7 @@ export const MessageList = () => {
         }
       };
    
-    const drawerWidth = 240;
-    const InputStyles = styled(Input)`
-    color: #9a9fa1;
-    padding: 10px 15px;
-    font-size: ${(props) => {
-        return "15px";
-    }};
-    `;
+    
       
     return (      
       
@@ -92,7 +93,7 @@ export const MessageList = () => {
                         ))}
     </div>    
     <InputStyles
-          className={styles.input}
+          // className={styles.input}
           placeholder="Введите сообщение..."
           onKeyDown={handlePressInput}
           onChange={(e) => addValue(e.target.value)}
