@@ -1,24 +1,33 @@
-import React, { useState } from 'react';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import { NavLink } from 'react-router-dom'
+import styles from './header.module.css'
+import {
+  AccountCircleTwoTone,
+  ChatTwoTone,
+  MenuTwoTone,
+} from '@mui/icons-material'
 
-export const Header = () => {    
-    
-    return (
-      <div>
-                <Toolbar>
+const menu = [
+  { title: 'Home', to: '/', icon: <MenuTwoTone /> },
+  {
+    title: 'Chat',
+    to: '/chat',
+    icon: <ChatTwoTone />,
+  },
+  { title: 'Profile', to: '/profile', icon: <AccountCircleTwoTone /> },
+]
 
-<Typography variant="h6" noWrap component="div">
-  Чат
-</Typography>
-</Toolbar>
-      </div>
-    );
-  };
+export function Header() {
+  return (
+    <div className={styles.header}>
+      <h1 className={styles.headerchat}>Чат</h1>
 
-
-
-
-
-
-
+      <ul className={styles.headermenu}>
+        {menu.map((item) => (
+          <li key={item.title} className={styles.navlink}>
+            <NavLink to={item.to}>{item.icon}</NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}

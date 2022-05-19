@@ -1,11 +1,17 @@
+import classNames from 'classnames'
+import { format } from 'date-fns'
+import styles from './message.module.css'
 
-export const Message = ({ message }) => {
-    return (
-      <div>
-        <h2>{message.author}</h2>
-        <h2>{message.text}</h2>
-        <h2>{message.date}</h2>
-        <hr />
-      </div>
-    );
-  };
+export function Message({ message }) {
+  return (
+    <div
+      className={classNames(styles.message, {
+        [styles.currentMessage]: message.author === 'User',
+      })}
+    >
+      <h3>{message.author}</h3>
+      <p>{message.message}</p>
+      <p>{format(message?.date, 'yyyy-MM-dd HH:MM:ss')}</p>
+    </div>
+  )
+}

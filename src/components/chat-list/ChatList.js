@@ -1,44 +1,30 @@
-import React from 'react';
-import { Drawer } from '@mui/material';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
-
+import { List } from '@mui/material'
+import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { Chat } from './chat'
 
 export const ChatList = () => {
+  const [chats] = useState([
+    { name: 'room1', author: 'Иван', lastmessage: 'Привет' },
+    { name: 'room2', author: 'Сергей', lastmessage: 'йохохо' },
+    { name: 'room3', author: 'Евгений', lastmessage: 'Как дела?' },
+    { name: 'room4', author: 'Елена', lastmessage: 'Пойдем гулять?' },
+  ])
 
-    const drawer = (        
-          <List>
-            {['чат 1', 'Чат 2', 'Чат 3', 'Чат 4', 'Чат 5'].map((text, index) => (
-              <ListItem key={index} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                  <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-    )
-    
-    return (
-      <div>
-        <Drawer
-  variant="permanent"
-  ModalProps={{
-    keepMounted: true,
-  }}
-  open
->
-{drawer}
-        </Drawer>
-      </div>
-    );
-  };
+  const { roomId } = useParams()
 
-
-
+  return (
+    <List component="nav">
+      {chats.map((chat) => (
+        <Link key={chat.name} to={`/chat/${chat.name}`}>
+          <Chat
+            title={chat.name}
+            selected={roomId === chat.name}
+            author={chat.author}
+            lastmessage={chat.lastmessage}
+          />
+        </Link>
+      ))}
+    </List>
+  )
+}
