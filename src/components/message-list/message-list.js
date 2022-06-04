@@ -20,17 +20,17 @@ const IconStyles = styled(Send)`
 
 const getBotMessage = () => ({
   author: 'Bot',
-  message: 'Hello from bot',
+  message: '0 - Привет, 1 - пиши еще :)',
   date: new Date(),
 })
 
 const getBotAnswer = (message) => {
   const answers = {
-    0: '00000',
-    1: '11111',
+    0: 'Привет',
+    1: 'Пиши еще :)',
   }
 
-  return answers[message] || 'not found answer'
+  return answers[message] || 'Я не знаю, что на это ответить :('
 }
 
 export const MessageList = () => {
@@ -73,7 +73,7 @@ export const MessageList = () => {
     if (messages.length && lastMessage?.author === 'User') {
       timerId = setTimeout(() => {
         sendMessage(getBotAnswer(lastMessage.message), 'Bot')
-      }, 500)
+      }, 1000)
     }
 
     return () => {
