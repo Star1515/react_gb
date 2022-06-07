@@ -1,10 +1,12 @@
-import { useSelector, useDispatch, connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { toggleVisibleProfile } from '../store/profile'
 import styles from './profile.module.css'
+import { ProfileForm } from '../components'
 
 export const ProfilePage = ({ toggleVisibleProfileWithConnect }) => {
   const profile = useSelector((state) => state.profile)
   const dispatch = useDispatch()
+
   return (
     <div className={styles.main}>
       <div className={styles.card}>
@@ -28,12 +30,20 @@ export const ProfilePage = ({ toggleVisibleProfileWithConnect }) => {
               <div className={styles.col - 12}>
                 <h1>{profile.firstName}</h1>
                 <h1>{profile.lastName}</h1>
-                <p>Телефон: +7 (123) 456-78-90</p>
+                <p>Телефон:{profile.phoneNumber}</p>
                 <p>
-                  Почта: <a href="mailto: #">test@test.com</a>
+                  Почта: <a href="mailto: #">{profile.email}</a>
                 </p>
-                <p>Скайп: skype</p>
-                <p>Телеграм: @telegram</p>
+                <p>Телеграм: {profile.telegram}</p>
+                <p>Скайп: {profile.skype}</p>
+                <ProfileForm
+                  firstName={profile.firstName}
+                  lastName={profile.lastName}
+                  phoneNumber={profile.phoneNumber}
+                  email={profile.email}
+                  telegram={profile.telegram}
+                  skype={profile.skype}
+                />
               </div>
             </div>
           )}
@@ -43,20 +53,20 @@ export const ProfilePage = ({ toggleVisibleProfileWithConnect }) => {
   )
 }
 
-// @TODO witout hooks
-const mapStateToProps = (state) => {
-  return {
-    profile: state.profile,
-  }
-}
+// // @TODO witout hooks
+// const mapStateToProps = (state) => {
+//   return {
+//     profile: state.profile,
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleVisibleProfileWithConnect: () => dispatch(toggleVisibleProfile()),
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     toggleVisibleProfileWithConnect: () => dispatch(toggleVisibleProfile()),
+//   }
+// }
 
-export const ProfilePageWithConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfilePage)
+// export const ProfilePageWithConnect = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(ProfilePage)
