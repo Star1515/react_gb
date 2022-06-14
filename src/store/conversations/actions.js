@@ -1,5 +1,5 @@
-import { CREATE_CONVERSATION } from './types.js'
-import { DELETE_CONVERSATION } from '../types.js'
+import { CREATE_CONVERSATION } from './types'
+import { DELETE_CONVERSATION } from '../types'
 
 export const createConversation = (conversation) => ({
   type: CREATE_CONVERSATION,
@@ -9,4 +9,7 @@ export const createConversation = (conversation) => ({
 export const deleteConversation = (conversation) => ({
   type: DELETE_CONVERSATION,
   payload: conversation,
+  // meta: {
+  //   delay: 5000,
+  // },
 })
